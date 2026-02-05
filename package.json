@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "express-handlebars": "^8.0.5",
     "pg": "^8.18.0",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "handlebars": "^4.7.6"
   }
 }

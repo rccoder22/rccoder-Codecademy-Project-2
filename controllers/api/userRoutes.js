@@ -1,4 +1,4 @@
-const router = requre("express").Router();
+const router = require("express").Router();
 
 // Main page returns 404
 router.get("/", (req, res) => {
@@ -33,3 +33,5 @@ router.post("/:userId/favorite", (req, res) => {
     });
   }
 });
+
+module.exports = router;

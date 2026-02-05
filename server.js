@@ -38,7 +38,7 @@ sequelize.query(
 );
 
 // Query database
-sequelize.query('SELECT * FROM favorite_books', function (err, { rows }) {
+sequelize.query('SELECT * FROM brewery_db', function (err, { rows }) {
   console.log(rows);
 });
 

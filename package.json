@@ -1,0 +1,25 @@
+{
+  "name": "rccoder-codecademy-project-2",
+  "version": "1.0.0",
+  "description": "Brewery lookup",
+  "homepage": "https://github.com/rccoder22/rccoder-Codecademy-Project-2#readme",
+  "bugs": {
+    "url": "https://github.com/rccoder22/rccoder-Codecademy-Project-2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rccoder22/rccoder-Codecademy-Project-2.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "pg": "^8.18.0",
+    "sequelize": "^6.37.7"
+  }
+}

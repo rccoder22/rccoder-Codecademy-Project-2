@@ -1,5 +1,15 @@
 const router = require("express").Router();
 
+// GET /api/breweries
+router.get("/", (req, res) => {
+  res.status(404).json({ status: 404, message: "Page Not Found" });
+});
+
+// POST /api/breweries
+router.post("/", (req, res) => {
+  res.status(404).json({ status: 404, message: "Page Not Found" });
+});
+
 // POST /api/breweries/search/1
 router.post("/search/1", (req, res) => {
   let obdId = req.body.obd_id;

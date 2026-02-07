@@ -10,3 +10,63 @@
 // postal_code: STRING, not null:
 // phone: STRING, not null:
 // website_url: STRING, not null:
+
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Favorites extends Model {}
+
+Favorites.init(
+  {
+    favorite_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    user_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    obd_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    brewery_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,                 
+  },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,           
+      allowNull: false,
+    },
+    postal_code: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    website_url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'favorites',
+  }
+);
+
+module.exports = Favorites;

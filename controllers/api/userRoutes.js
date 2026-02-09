@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Users, Favorites } = require("../../models");
 
 // Main page returns 404
 router.get("/", (req, res) => {
@@ -6,6 +7,34 @@ router.get("/", (req, res) => {
     status: 404,
     message: "Page does not exists",
   });
+});
+
+// /api/users/:userId/favorites gets all users favorites
+router.get("/:userId/favorites", async (req, res) => {
+  try {
+    const userFavorites = await Favorites.findAll({
+      where: {
+        user_id: req.params.userId,
+      },
+    });
+
+    if (!userFavorites) {
+      res.status(400).json({
+        status: 400,
+        message: "Could not find user favorites",
+      });
+    }
+
+    res.status(200).json({
+      favorites: userFavorites,
+      message: "Favorites accessed",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: "Error accessing the database",
+    });
+  }
 });
 
 // https://api.openbrewerydb.org/v1/breweries/{obdb-id}

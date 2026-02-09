@@ -56,6 +56,14 @@ Favorites.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    longitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    latitude: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,

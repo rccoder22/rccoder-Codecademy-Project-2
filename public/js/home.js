@@ -3,6 +3,20 @@ const searchInput = document.getElementById("searchInput");
 const results = document.getElementById("results");
 
 let isSearching = false;
+let isSaving = false;
+
+function saveButtonFavorite(decision, id) {
+  if (!isSaving) {
+    isSaving = true;
+
+    if (decision) {
+      console.log("Save: ", id);
+    } else {
+      console.log("Delete: ", id);
+    }
+    isSaving = false;
+  }
+}
 
 function displayItems(hasItems, data = {}) {
   results.replaceChildren();
@@ -35,6 +49,14 @@ function displayItems(hasItems, data = {}) {
       favoriteButton.addEventListener("click", (event) => {
         // console.log(`Favorite Id: ${favoriteButton.dataset.info}`);
         favoriteButton.classList.toggle("is-favorited");
+
+        const buttonId = favoriteButton.dataset.info;
+
+        if (buttonId && favoriteButton.classList.contains("is-favorited")) {
+          saveButtonFavorite(true, buttonId);
+        } else {
+          saveButtonFavorite(false, buttonId);
+        }
       });
 
       // Append everything to main items
@@ -80,6 +102,8 @@ function searchAndDisplay(event) {
       .then((data) => {
         if (data) {
           displayItems(true, data.data);
+        } else {
+          displayItems(false);
         }
       })
       .catch((error) => {

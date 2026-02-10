@@ -17,7 +17,8 @@ function displayItems(hasItems, data = {}) {
       nameDiv.innerHTML = `
         <h2><a href="/search/1?bn=${brewery.id}">${brewery.name}</a></h2>
         <br />
-        <p>${brewery.address_1}<br />${brewery.city}, ${brewery.state_province} ${brewery.postal_code}</p>
+        <p>${brewery.address_1 || ""}<br />${brewery.city}, ${brewery.state_province} ${brewery.postal_code}<br /><br />
+        <a href="${brewery.website_url}">${brewery.name} Website</a></p>
         `;
       const favoriteButton = document.createElement("button");
 
@@ -28,11 +29,12 @@ function displayItems(hasItems, data = {}) {
 
       // Add data to button and text content
       favoriteButton.dataset.info = brewery.id;
-      favoriteButton.textContent = "🖤";
+      favoriteButton.innerHTML = `<span class="no-favorite-heart">🖤</span><span class="favorite-heart">🧡</span>`;
 
       // Button event Listener
       favoriteButton.addEventListener("click", (event) => {
         console.log(`Favorite Id: ${favoriteButton.dataset.info}`);
+        favoriteButton.classList.toggle("is-favorited");
       });
 
       // Append everything to main items

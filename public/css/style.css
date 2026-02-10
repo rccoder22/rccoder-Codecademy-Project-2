@@ -14,6 +14,7 @@
 body {
   font-family: "Inter", sans-serif;
   background-color: #d1ca98;
+  color: black;
 }
 
 h1 {
@@ -35,6 +36,15 @@ h4 {
 
 p {
   font-size: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #021429;
+}
+
+a:hover {
+  color: #ffb140;
 }
 
 .home-nav {
@@ -96,6 +106,7 @@ p {
   height: 40px;
   border-radius: 10px;
   border: 1px solid rgb(79, 79, 79);
+  padding: 5px;
 }
 
 .search-button {
@@ -105,10 +116,20 @@ p {
   height: 40px;
   border-radius: 10px;
   border: 1px solid rgb(79, 79, 79);
-  background-color: #ffb140;
+  background-color: hsl(35, 100%, 63%);
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: hsl(35, 100%, 53%);
+}
+
+.search-button:active {
+  background-color: hsl(35, 100%, 73%);
 }
 
 .hero-results-box {
+  margin-top: 40px;
   width: 800px;
   display: flex;
   flex-direction: column;
@@ -141,4 +162,25 @@ p {
   align-items: center;
   border: 1px solid rgb(79, 79, 79);
   border-radius: 10px;
+}
+
+.favorite-button {
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/* Heart mechanics */
+
+.favorite-heart {
+  display: none;
+}
+
+.favorite-button.is-favorited .no-favorite-heart {
+  display: none;
+}
+
+.favorite-button.is-favorited .favorite-heart {
+  display: inline;
 }

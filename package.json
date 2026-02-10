@@ -26,6 +26,8 @@
     "express-handlebars": "^8.0.5",
     "handlebars": "^4.7.6",
     "pg": "^8.18.0",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "connect-session-sequelize": "^7.0.4",
+    "express-session": "^1.17.1"
   }
 }

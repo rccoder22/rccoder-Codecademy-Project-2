@@ -1,0 +1,101 @@
+.caveat-brush-regular {
+  font-family: "Caveat Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-font > {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #d1ca98;
+}
+
+h1 {
+  font-family: "Caveat Brush", cursive;
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+h4 {
+  font-size: 0.7em;
+}
+
+p {
+  font-size: 1em;
+}
+
+.home-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 0 10px;
+  background-color: #b7b3a1;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgb(79, 79, 79);
+}
+
+.logo img {
+  width: 250px;
+}
+
+.header-right {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  flex-direction: column;
+}
+
+.hero-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 40px;
+}
+
+.hero-box p {
+  width: 800px;
+}
+
+.hero-text {
+  font-size: 4em;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1.2em;
+}
+
+.search-input {
+  width: 500px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgb(79, 79, 79);
+}
+
+.search-button {
+  font-size: 1em;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgb(79, 79, 79);
+  background-color: #ffb140;
+}

@@ -16,16 +16,11 @@ router.get("/favorites", async (req, res) => {
       const favoritesData = favorites.map((brewery) => {
         return brewery.get({ plain: true });
       });
-      //console.log(favoritesData);
       res.render("favoritesPage", { favoritesData });
     } else {
-      //console.log("No fav found");
       res.redirect(301, "/");
-      //res.render("favoritesPage", {});
     }
   } catch (error) {
-    //console.log(error);
-    //res.render("favoritesPage", {});
     res.redirect(301, "/");
   }
 });

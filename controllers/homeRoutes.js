@@ -19,14 +19,14 @@ router.get("/favorites", async (req, res) => {
       //console.log(favoritesData);
       res.render("favoritesPage", { favoritesData });
     } else {
-      console.log("No uuid found");
-      //res.redirect(301, "/");
-      res.render("favoritesPage", { obd_id: "hello" });
+      //console.log("No fav found");
+      res.redirect(301, "/");
+      //res.render("favoritesPage", {});
     }
   } catch (error) {
-    console.log(error);
-    res.render("favoritesPage", { obd_id: "hello" });
-    //res.redirect(301, "/");
+    //console.log(error);
+    //res.render("favoritesPage", {});
+    res.redirect(301, "/");
   }
 });
 

@@ -1,6 +1,6 @@
 <h2>User Favorites</h2>
 <ul>
-  {{#each favoritesData}}
-    <li>{{obd_id}}</li>
+  {{#each favoritesData as |favorite|}}
+    <li>{{favorite.brewery_name}}</li>
   {{/each}}
 </ul>

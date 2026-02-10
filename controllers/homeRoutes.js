@@ -14,17 +14,19 @@ router.get("/favorites", async (req, res) => {
           user_id: req.query.uuid,
         },
       });
-      console.log(favorites);
-      const favoritesData = favorites.get({ plain: true });
-      res.render("favoritesPage", favoritesData);
+      const favoritesData = favorites.map((brewery) => {
+        return brewery.get({ plain: true });
+      });
+      //console.log(favoritesData);
+      res.render("favoritesPage", { favoritesData });
     } else {
       console.log("No uuid found");
       //res.redirect(301, "/");
-      res.render("favoritesPage", {});
+      res.render("favoritesPage", { obd_id: "hello" });
     }
   } catch (error) {
     console.log(error);
-    res.render("favoritesPage", {});
+    res.render("favoritesPage", { obd_id: "hello" });
     //res.redirect(301, "/");
   }
 });

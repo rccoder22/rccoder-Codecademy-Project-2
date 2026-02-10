@@ -162,6 +162,7 @@ a:hover {
   align-items: center;
   border: 1px solid rgb(79, 79, 79);
   border-radius: 10px;
+  background-color: #b7b3a1;
 }
 
 .favorite-button {

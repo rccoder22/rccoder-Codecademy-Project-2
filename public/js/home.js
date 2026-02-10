@@ -32,7 +32,7 @@ function displayItems(hasItems, data = {}) {
         <h2><a href="/search/1?bn=${brewery.id}">${brewery.name}</a></h2>
         <br />
         <p>${brewery.address_1 || ""}<br />${brewery.city}, ${brewery.state_province} ${brewery.postal_code}<br /><br />
-        <a href="${brewery.website_url || "#"}">${brewery.name} Website</a></p>
+        <a href="${brewery.website_url || "#"}" target="_blank">${brewery.name} Website</a></p>
         `;
       const favoriteButton = document.createElement("button");
 

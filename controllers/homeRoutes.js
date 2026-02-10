@@ -5,6 +5,10 @@ router.get("/", (req, res) => {
   res.render("homePage", {});
 });
 
+router.get("/search/1", (req, res) => {
+  res.render("singleSearchPage", {});
+});
+
 router.get("/favorites", async (req, res) => {
   try {
     if (req.query.fav) {

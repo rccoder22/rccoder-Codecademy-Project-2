@@ -44,16 +44,20 @@ router.post("/search", (req, res) => {
   } else {
     url += `by_postal=${encodeURIComponent(cityEntry)}`;
   }
-
+  
   fetch(url)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Error fetching breweries");
+        res.status(400).json({
+          data: [],
+          message: "Error getting info from server",
+        });
       }
       return response.json();
     })
     .then((data) => {
-      res.json({ data, url: url });
+      console.log(`Data from ODB: ${data}`);
+      res.json({ data });
     })
     .catch((error) => {
       res.status(400).json({

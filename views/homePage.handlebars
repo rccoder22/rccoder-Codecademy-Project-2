@@ -13,23 +13,18 @@
 <div class="search">
   <h2>Search by City or ZIP Code to get the party started</h2>
   <div>
-    <input class="search-input" type="text" />
-    <button class="search-button">SEARCH</button>
+    <input
+      class="search-input"
+      id="searchInput"
+      type="text"
+      placeholder="Enter city or zip code"
+    />
+    <button class="search-button" id="searchButton">SEARCH</button>
   </div>
 </div>
-<div id="results" class="results-box">
-  <ul class="results-list">
-    <li>
-      <div class="search-list-item">
-        <div>
-          <h2><a href="/search/1?bn=id">Brewery Name</a></h2>
-          <br />
-          <p>Brewery Address<br />City, State Postal</p>
-        </div>
-        <div>
-          <button class="favorite-button" data-info="obd_id">🖤</button>
-        </div>
-      </div>
-    </li>
-  </ul>
+<div class="hero-results-box">
+    <div id="results" class="results-box"></div>
 </div>
+
+</div>
+<script src="/js/home.js"></script>

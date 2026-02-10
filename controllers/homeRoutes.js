@@ -7,11 +7,10 @@ router.get("/", (req, res) => {
 
 router.get("/favorites", async (req, res) => {
   try {
-    console.log(`\n\n\n${req.query.uuid}\n\n\n`);
-    if (req.query.uuid) {
+    if (req.query.fav) {
       const favorites = await Favorites.findAll({
         where: {
-          user_id: req.query.uuid,
+          user_id: req.query.fav,
         },
       });
       const favoritesData = favorites.map((brewery) => {

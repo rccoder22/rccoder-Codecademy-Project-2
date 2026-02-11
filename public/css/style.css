@@ -160,9 +160,13 @@ a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(79, 79, 79);
+  border: 1px solid #4f4f4f;
   border-radius: 10px;
   background-color: #b7b3a1;
+}
+
+.list-item:hover {
+  box-shadow: 0 0 5px #4f4f4f;
 }
 
 .favorite-button {

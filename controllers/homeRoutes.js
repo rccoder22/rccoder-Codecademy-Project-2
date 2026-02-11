@@ -1,9 +1,16 @@
 const router = require("express").Router();
 const { Users, Favorites } = require("../models");
 
+router.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 // Home page
 router.get("/", (req, res) => {
-  res.render("homePage", {});
+  res.render("homePage", {
+    title: "Brews'n Home",
+  });
 });
 
 //Search for one Brewery
@@ -26,7 +33,7 @@ router.get("/search/1", (req, res) => {
       .then((data) => {
         if (data) {
           data.name = data.name.replace(/[^a-zA-Z0-9 ]/g, "");
-          res.render("singleSearchPage", { data });
+          res.render("singleSearchPage", { data, title: "Brews'n search" });
         }
       })
       .catch((error) => {
@@ -40,16 +47,19 @@ router.get("/search/1", (req, res) => {
 
 router.get("/favorites", async (req, res) => {
   try {
-    if (req.query.fav) {
+    if (req.session.user) {
       const favorites = await Favorites.findAll({
         where: {
-          user_id: req.query.fav,
+          user_id: req.session.user.user,
         },
       });
       const favoritesData = favorites.map((brewery) => {
         return brewery.get({ plain: true });
       });
-      res.render("favoritesPage", { favoritesData });
+      res.render("favoritesPage", {
+        favoritesData,
+        title: "Brews'n User Favorites",
+      });
     } else {
       res.redirect(301, "/");
     }
@@ -59,6 +69,13 @@ router.get("/favorites", async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.render("loginPage", {});
+  if (req.session.user) {
+    res.redirect("/");
+    return;
+  }
+  res.render("loginPage", {
+    title: "Brews'n login",
+  });
 });
+
 module.exports = router;

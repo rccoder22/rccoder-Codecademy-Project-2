@@ -1,13 +1,22 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
-
+const session = require("express-session");
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const helpers = require("./utils/helpers");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// Set up Sessions
+const sess = {
+  secret: "d95b1ef7-15b8-50e6-af71-ef2888214dff",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false },
+};
+app.use(session(sess));
 
 // Set up handlebars
 const hbs = exphbs.create({ helpers });

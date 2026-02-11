@@ -46,15 +46,21 @@ Users.init(
         notEmpty: true,
         len: [6, 100],
       },
-      set(value) {
-        if (value) {
-          const hash = bcrypt.hashSync(value, 10);
-          this.setDataValue("password", hash);
-        }
-      },
+      // set(value) {
+      //   if (value) {
+      //     const hash = bcrypt.hashSync(value, 10);
+      //     this.setDataValue("password", hash);
+      //   }
+      // },
     },
   },
   {
+    hook: {
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,

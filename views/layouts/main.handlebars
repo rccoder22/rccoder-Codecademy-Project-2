@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/fav-logo1-32x32.png" />
-    <title>Brews'n</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,10 +22,28 @@
           /></a>
       </div>
       <div class="header-right">
+        <nav class="nav-links">
+          <ul>
+            <li><a href="/">Home</a></li>
+            {{#if user}}
+              <li><a href="/favorites">Favorites</a></li>
+              <li class="user-info"><span>Hello, {{user.firstname}}!</span></li>
+              <li><button id="logoutButton">Logout</button></li>
+            {{else}}
+              <li><a href="/login" class="login-link">Login</a></li>
+            {{/if}}
+          </ul>
+        </nav>
       </div>
     </header>
     <div class="main-div">
       {{{body}}}
     </div>
+    <footer>
+      <p>&copy; 2026 Brews'n</p>
+    </footer>
+    {{#if user.loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 </html>

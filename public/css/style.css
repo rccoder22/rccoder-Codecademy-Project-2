@@ -116,16 +116,16 @@ a:hover {
   height: 40px;
   border-radius: 10px;
   border: 1px solid rgb(79, 79, 79);
-  background-color: hsl(35, 100%, 63%);
+  background-color: hsl(34, 100%, 50%);
   cursor: pointer;
 }
 
 .search-button:hover {
-  background-color: hsl(35, 100%, 53%);
+  background-color: hsl(34, 100%, 40%);
 }
 
 .search-button:active {
-  background-color: hsl(35, 100%, 73%);
+  background-color: hsl(34, 100%, 60%);
 }
 
 .hero-results-box {

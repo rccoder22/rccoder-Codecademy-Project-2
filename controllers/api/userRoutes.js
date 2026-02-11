@@ -49,10 +49,9 @@ router.post("/favorites", async (req, res) => {
 // POST /api/users/favorite Saves favorite brewery information
 // send userId and obd_id
 router.post("/favorite", async (req, res) => {
+  const breweryId = req.body.obd_id;
+  const userId = req.body.user_id;
   try {
-    const breweryId = req.body.obd_id;
-    const userId = req.body.userId;
-
     const favoriteCounted = await Favorites.findAndCountAll({
       where: {
         obd_id: breweryId,
@@ -127,9 +126,9 @@ router.post("/favorite", async (req, res) => {
           // }
           if (created) {
             res.status(200).json({
+              data,
               status: 200,
               message: "Data Created successfully",
-              brewery: data,
               created: favorite.obd_id,
             });
             return;
@@ -153,6 +152,50 @@ router.post("/favorite", async (req, res) => {
       status: 400,
       message: "Could not save favorite brewery",
       error: error.message,
+      user_id: userId,
+      obd_id: breweryId,
+    });
+  }
+});
+
+// DELETE /api/users/favorite Saves favorite brewery information
+// send userId and obd_id
+
+router.delete("/favorite", async (req, res) => {
+  const breweryId = req.body.obd_id;
+  const userId = req.body.user_id;
+  try {
+    const favoriteCounted = await Favorites.findAndCountAll({
+      where: {
+        obd_id: breweryId,
+        user_id: userId,
+      },
+      limit: 1,
+    });
+
+    if (favoriteCounted.count === 0) {
+      throw new Error("No Record Found");
+    }
+    const affectedRows = await Favorites.destroy({
+      where: {
+        obd_id: breweryId,
+        user_id: userId,
+      },
+    });
+
+    if (affectedRows > 0) {
+      res.status(200).json({
+        status: 200,
+        message: `${affectedRows} removed`,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      message: "Could not delete favorite brewery",
+      error: error.message,
+      user_id: userId,
+      obd_id: breweryId,
     });
   }
 });

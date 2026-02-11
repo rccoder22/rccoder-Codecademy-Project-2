@@ -10,8 +10,59 @@ function saveButtonFavorite(decision, id) {
     isSaving = true;
 
     if (decision) {
-      console.log("Save: ", id);
+      fetch("/api/users/favorite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          obd_id: id,
+          user_id: "d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            console.log("Response is ", response.status);
+            return null;
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data) {
+            console.log("Favorite", data.data.id, "Saved!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        });
+      // obd_id, user_id
+      //console.log("Save: ", id);
     } else {
+      fetch("/api/users/favorite", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          obd_id: id,
+          user_id: "d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            console.log("Response is ", response.status);
+            return null;
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data) {
+            console.log("Favorite", data.data.id, "Deleted!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        });
       console.log("Delete: ", id);
     }
     isSaving = false;

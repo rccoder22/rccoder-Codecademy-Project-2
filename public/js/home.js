@@ -75,15 +75,16 @@ function displayItems(hasItems, data = {}) {
     const mainList = document.createElement("ul");
     // Iterate over brewery data and put out to the screen
     data.map((brewery) => {
+      const breweryName = brewery.name.replace(/[^a-zA-Z0-9 ]/g, "");
       const listItem = document.createElement("li");
       const searchListDiv = document.createElement("div");
       const nameDiv = document.createElement("div");
       const buttonDiv = document.createElement("div");
       nameDiv.innerHTML = `
-        <h2><a href="/search/1?bn=${brewery.id}">${brewery.name}</a></h2>
+        <h2><a href="/search/1?bn=${brewery.id}">${breweryName}</a></h2>
         <br />
         <p>${brewery.address_1 || ""}<br />${brewery.city}, ${brewery.state_province} ${brewery.postal_code}<br /><br />
-        <a href="${brewery.website_url || "#"}" target="_blank">${brewery.name} Website</a></p>
+        <a href="${brewery.website_url || "#"}" target="_blank">${breweryName} Website</a></p>
         `;
       const favoriteButton = document.createElement("button");
 

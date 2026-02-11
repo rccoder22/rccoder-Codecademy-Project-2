@@ -25,6 +25,7 @@ router.get("/search/1", (req, res) => {
       })
       .then((data) => {
         if (data) {
+          data.name = data.name.replace(/[^a-zA-Z0-9 ]/g, "");
           res.render("singleSearchPage", { data });
         }
       })

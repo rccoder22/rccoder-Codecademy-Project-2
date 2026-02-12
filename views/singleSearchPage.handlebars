@@ -1,7 +1,9 @@
 <h2>{{data.name}}</h2>
-<p>Address:  {{data.address_1}}</p>
-<p>City:  {{data.city}}</p>
-<p>State:  {{data.state_province}}</p>
-<p>Postal Code:  {{data.postal_code}}</p>
-<p>Phone:  {{data.phone}}</p>
-<p>Website:  {{data.website_url}}</p>
+<p>{{data.address_1}}</p>
+<p>{{data.city}}, {{data.state_province}} {{data.postal_code}}</p>
+{{#if data.phone}}
+  <p>Phone: {{data.phone}}</p>
+{{/if}}
+{{#if data.website_url}}
+  <p><a href="{{data.website_url}}">{{data.name}} Website</a></p>
+{{/if}}

@@ -14,7 +14,7 @@ const sess = {
   secret: "d95b1ef7-15b8-50e6-af71-ef2888214dff",
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false },
+  cookie: { secure: false, maxAge: 5 * 60 * 1000 }, // 5 minutes
 };
 app.use(session(sess));
 

@@ -33,11 +33,15 @@ router.get("/search/1", (req, res) => {
       .then((data) => {
         if (data) {
           data.name = data.name.replace(/[^a-zA-Z0-9 ]/g, "");
-          data.postal_code = data.postal_code.slice(0,5);
-          const phone1 = data.phone.slice(0,3);
-          const phone2 = data.phone.slice(3,6);
-          const phone3 = data.phone.slice(6);
-          data.phone = `${phone1}-${phone2}-${phone3}`;
+          if (data.postal_code) {
+            data.postal_code = data.postal_code.slice(0, 5);
+          }
+          if (data.phone) {
+            const phone1 = data.phone.slice(0, 3);
+            const phone2 = data.phone.slice(3, 6);
+            const phone3 = data.phone.slice(6);
+            data.phone = `${phone1}-${phone2}-${phone3}`;
+          }
           res.render("singleSearchPage", { data, title: "Brews'n search" });
         }
       })
@@ -51,11 +55,13 @@ router.get("/search/1", (req, res) => {
 });
 
 router.get("/favorites", async (req, res) => {
+  //console.log(`Session user: ${JSON.stringify(req.session.user)}`);
   try {
     if (req.session.user) {
+      const user = req.session.user;
       const favorites = await Favorites.findAll({
         where: {
-          user_id: req.session.user.user,
+          user_id: user.user,
         },
       });
       const favoritesData = favorites.map((brewery) => {
@@ -69,6 +75,7 @@ router.get("/favorites", async (req, res) => {
       res.redirect(301, "/");
     }
   } catch (error) {
+    //console.log(error.message);
     res.redirect(301, "/");
   }
 });

@@ -2,28 +2,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brews'n</title>
+    <link rel="icon" type="image/png" href="/img/fav-logo1-32x32.png" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-      <header class="nav">
-          <h1>LETS GET BREWS'N</h1>
-          <h2>YOUR ONE STOP BREWERY GUIDE</h2>
-       </header>
-          <div class="logo">
-            <img src="/img/logo-img1.png"/> 
-          </div> 
-          <p>Welcome to Brews'n....you Brewery Search.  Created in 2026 this website will help you figure out where the party is going to be.  
-            Enter in you city by name or Zip code to find you next brew haha journey.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate molestias a qui, doloribus quidem consequuntur esse hic 
-            voluptas porro quasi, quas debitis dolor ducimus possimus neque repudiandae nemo quisquam perspiciatis?
-          </p>
-          <div class="search">
-            <h2>Search by City or ZIP Code to get the party started</h2>
-            <input class="search-input" type="text"/>
-            <button class="button">SEARCH</button>
-          </div>
-    {{{body}}}
+    <header class="home-nav">
+      <div class="logo">
+        <a href="/"><img
+            src="/img/logo-img.png"
+            alt="Logo of car with text"
+          /></a>
+      </div>
+      <div class="header-right">
+        <nav class="nav-links">
+          <ul>
+            <li><a href="/">Home</a></li>
+            {{#if user}}
+              <li><a href="/favorites">Favorites</a></li>
+              <li class="user-info"><span>Hello, {{user.firstname}}!</span></li>
+              <li><button id="logoutButton">Logout</button></li>
+            {{else}}
+              <li><a href="/login" class="login-link">Login</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="main-div">
+      {{{body}}}
+    </div>
+    <footer>
+      <p>&copy; 2026 Brews'n</p>
+    </footer>
+    {{#if user.loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
+<<<<<<< HEAD
 </html>
 
+=======
+</html>
+>>>>>>> e24c4d47c02d0e298d3fd5a33abc7b16a4d1712a

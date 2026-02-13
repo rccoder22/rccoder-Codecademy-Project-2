@@ -95,26 +95,31 @@ function displayItems(hasItems, data = {}) {
       favoriteButton.classList.add("favorite-button");
 
       // Add data to button and text content
-      favoriteButton.dataset.info = brewery.id;
-      favoriteButton.innerHTML = `<span class="no-favorite-heart">🖤</span><span class="favorite-heart">🧡</span>`;
-
-      // Button event Listener
-      favoriteButton.addEventListener("click", (event) => {
-        // console.log(`Favorite Id: ${favoriteButton.dataset.info}`);
-        favoriteButton.classList.toggle("is-favorited");
-
-        const buttonId = favoriteButton.dataset.info;
-
-        if (buttonId && favoriteButton.classList.contains("is-favorited")) {
-          saveButtonFavorite(true, buttonId);
-        } else {
-          saveButtonFavorite(false, buttonId);
+      if (brewery.isUser) {
+        favoriteButton.dataset.info = brewery.id;
+        favoriteButton.innerHTML = `<span class="no-favorite-heart">🖤</span><span class="favorite-heart">🧡</span>`;
+        if (brewery.isFavorite) {
+          favoriteButton.classList.add("is-favorited");
         }
-      });
+        // Button event Listener
+        favoriteButton.addEventListener("click", (event) => {
+          // console.log(`Favorite Id: ${favoriteButton.dataset.info}`);
+          favoriteButton.classList.toggle("is-favorited");
+
+          const buttonId = favoriteButton.dataset.info;
+
+          if (buttonId && favoriteButton.classList.contains("is-favorited")) {
+            saveButtonFavorite(true, buttonId);
+          } else {
+            saveButtonFavorite(false, buttonId);
+          }
+        });
+
+        buttonDiv.appendChild(favoriteButton);
+      }
 
       // Append everything to main items
       searchListDiv.appendChild(nameDiv);
-      buttonDiv.appendChild(favoriteButton);
       listItem.appendChild(searchListDiv);
       listItem.appendChild(buttonDiv);
 
@@ -154,7 +159,7 @@ function searchAndDisplay(event) {
       })
       .then((data) => {
         if (data) {
-          displayItems(true, data.data);
+          displayItems(true, data.newData || data);
         } else {
           displayItems(false);
         }

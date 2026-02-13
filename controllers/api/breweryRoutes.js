@@ -1,4 +1,10 @@
 const router = require("express").Router();
+const { Users, Favorites } = require("../../models");
+
+router.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 // GET /api/breweries
 router.get("/", (req, res) => {
@@ -63,11 +69,36 @@ router.post("/search", (req, res) => {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(`Data from ODB: ${data}`);
-        res.json({ data });
+      .then(async (data) => {
+        // console.log(`Data from ODB: ${JSON.stringify(data)}\n`);
+        let newData = data;
+        if (req.session.user) {
+          const user = req.session.user;
+          const userId = user.user;
+          const faves = await Favorites.findAll({
+            where: {
+              user_id: userId,
+            },
+          });
+          const faveList = faves.map((fav) => {
+            const brews = fav.get({ plain: true });
+            return { obd_id: brews.obd_id, favorite_id: brews.favorite_id };
+          });
+          if (faveList.length > 0) {
+            newData = data.map((brewery) => {
+              const isFav = faveList.find((fav) => fav.obd_id === brewery.id);
+              return {
+                ...brewery,
+                isFavorite: isFav ? true : false,
+                isUser: userId || null,
+              };
+            });
+          }
+        }
+        res.json({ newData });
       })
       .catch((error) => {
+        console.log(`\nError fetching breweries: ${error.message}\n`);
         res.status(400).json({
           status: 400,
           message: "Cannot retreive breweries info",

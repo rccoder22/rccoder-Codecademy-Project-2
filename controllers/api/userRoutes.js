@@ -79,11 +79,12 @@ router.post("/favorites", async (req, res) => {
 router.post("/favorite", async (req, res) => {
   const breweryId = req.body.obd_id;
   const userId = req.body.user_id;
+  const user = req.session.user;
   try {
     const favoriteCounted = await Favorites.findAndCountAll({
       where: {
         obd_id: breweryId,
-        user_id: userId,
+        user_id: user.user,
       },
       limit: 1,
     });
@@ -99,14 +100,14 @@ router.post("/favorite", async (req, res) => {
         }
       })
       .then(async (data) => {
-        if (userId) {
+        if (user.user) {
           const [favorite, created] = await Favorites.findOrCreate({
             where: {
-              user_id: userId,
+              user_id: user.user,
               obd_id: breweryId,
             },
             defaults: {
-              user_id: userId,
+              user_id: user.user,
               obd_id: data.id,
               brewery_name: data.name,
               brewery_type: data.brewery_type,
@@ -157,11 +158,12 @@ router.post("/favorite", async (req, res) => {
 router.delete("/favorite", async (req, res) => {
   const breweryId = req.body.obd_id;
   const userId = req.body.user_id;
+  const user = req.session.user;
   try {
     const favoriteCounted = await Favorites.findAndCountAll({
       where: {
         obd_id: breweryId,
-        user_id: userId,
+        user_id: user.user,
       },
       limit: 1,
     });
@@ -172,7 +174,7 @@ router.delete("/favorite", async (req, res) => {
     const affectedRows = await Favorites.destroy({
       where: {
         obd_id: breweryId,
-        user_id: userId,
+        user_id: user.user,
       },
     });
 

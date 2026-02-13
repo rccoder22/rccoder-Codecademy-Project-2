@@ -156,6 +156,24 @@ a:hover {
   width: 700px;
 }
 
+.single-hero-results-box {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.single-results-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5em;
+  max-width: 800px;
+  min-height: 700px;
+}
+
 .list-item {
   padding: 10px;
   width: 780px;

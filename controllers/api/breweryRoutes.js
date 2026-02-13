@@ -29,7 +29,7 @@ router.post("/search/1", (req, res) => {
       .catch((error) => {
         res.status(400).json({
           status: 400,
-          message: "Error retreiving brewery info",
+          message: "Error retrieving brewery info",
           url: url,
         });
       });

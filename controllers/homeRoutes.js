@@ -65,7 +65,17 @@ router.get("/favorites", async (req, res) => {
         },
       });
       const favoritesData = favorites.map((brewery) => {
-        return brewery.get({ plain: true });
+        const brews = brewery.get({ plain: true });
+        brews.brewery_name = brews.brewery_name.replace(/[^a-zA-Z0-9 ]/g, "");
+        brews.postal_code = brews.postal_code.slice(0, 5);
+        if (brews.phone) {
+          brews.phone = brews.phone.replace(/[^0-9]/g, "");
+          const phone1 = brews.phone.slice(0, 3);
+          const phone2 = brews.phone.slice(3, 6);
+          const phone3 = brews.phone.slice(6);
+          brews.phone = `${phone1}-${phone2}-${phone3}`;
+        }
+        return brews;
       });
       res.render("favoritesPage", {
         favoritesData,

@@ -1,6 +1,31 @@
 <h2>User Favorites</h2>
-<ul>
-  {{#each favoritesData as |favorite|}}
-    <li>{{favorite.brewery_name}}</li>
-  {{/each}}
-</ul>
+<div class="hero-results-box">
+  <div class="results-box">
+    <ul>
+      {{#each favoritesData as |favorite|}}
+        <li class="list-item">
+          <div class="search-list-item">
+            <div>
+              <h2><a
+                  href="/search/1?bn={{favorite.obd_id}}"
+                >{{favorite.brewery_name}}</a></h2><br />
+              <p>{{#if favorite.address}}{{favorite.address}}{{/if}}<br
+                />{{favorite.city}},
+                {{favorite.state}}
+                {{favorite.postal_code}}</p><br /><br />
+              {{#if favorite.phone}}
+                <p>Phone: {{favorite.phone}}</p><br />
+              {{/if}}
+              {{#if favorite.website_url}}
+                <a
+                  href="{{favorite.website_url}}"
+                  target="_blank"
+                >{{favorite.brewery_name}} Website</a>
+              {{/if}}
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

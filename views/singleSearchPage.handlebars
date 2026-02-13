@@ -1,9 +1,26 @@
-<h2>{{data.name}}</h2>
-<p>{{data.address_1}}</p>
-<p>{{data.city}}, {{data.state_province}} {{data.postal_code}}</p>
-{{#if data.phone}}
-  <p>Phone: {{data.phone}}</p>
-{{/if}}
-{{#if data.website_url}}
-  <p><a href="{{data.website_url}}">{{data.name}} Website</a></p>
-{{/if}}
+<div class="single-hero-results-box">
+  <div class="single-results-box">
+    <ul>
+      <li class="list-item">
+        <div class="search-list-item">
+          <div>
+            <h2>{{data.name}}</h2><br />
+            {{#if data.address_1}}
+              <p>{{data.address_1}}</p>
+            {{/if}}
+            <p>{{data.city}},
+              {{data.state_province}}
+              {{data.postal_code}}</p><br />
+            {{#if data.phone}}
+              <p>Phone: {{data.phone}}</p>
+            {{/if}}
+            <br />
+            {{#if data.website_url}}
+              <p><a href="{{data.website_url}}">{{data.name}} Website</a></p>
+            {{/if}}
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -229,6 +229,26 @@ a:hover {
   padding-top: 20px;
 }
 
+.logout-button {
+  background-color: hsl(34, 100%, 50%);
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(79, 79, 79);
+  width: 80px;
+  font-size: 1em;
+  cursor: pointer;
+  position: relative;
+  top: -8px;
+}
+
+.logout-button:hover {
+  background-color: hsl(34, 100%, 40%);
+}
+
+.logout-button:active {
+  background-color: hsl(34, 100%, 60%);
+}
+
 /* Heart mechanics */
 
 .favorite-heart {

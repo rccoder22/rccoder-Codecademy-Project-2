@@ -28,7 +28,10 @@
             {{#if user}}
               <li><a href="/favorites">Favorites</a></li>
               <li class="user-info"><span>Hello, {{user.firstname}}!</span></li>
-              <li><button id="logoutButton">Logout</button></li>
+              <li><button
+                  id="logoutButton"
+                  class="logout-button"
+                >Logout</button></li>
             {{else}}
               <li><a href="/login" class="login-link">Login</a></li>
             {{/if}}

@@ -54,7 +54,7 @@ function saveButtonFavorite(decision, id) {
         })
         .then((data) => {
           if (data) {
-            console.log("Favorite", data.data.id, "Deleted!");
+            console.log("Favorite Deleted");
           }
         })
         .catch((error) => {

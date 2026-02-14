@@ -24,8 +24,22 @@
               {{/if}}
             </div>
           </div>
+          <div>
+            <button
+              class="favorite-button is-favorited"
+              data-info="{{favorite.obd_id}}"
+              id="favoriteButton"
+            >
+              <span class="no-favorite-heart">🖤</span><span
+                class="favorite-heart"
+              >🧡</span>
+            </button>
+          </div>
         </li>
       {{/each}}
     </ul>
   </div>
 </div>
+{{#if favoritesData}}
+  <script src="/js/singleSearch.js"></script>
+{{/if}}

@@ -96,16 +96,14 @@ router.post("/search", (req, res) => {
             const brews = fav.get({ plain: true });
             return { obd_id: brews.obd_id, favorite_id: brews.favorite_id };
           });
-          if (faveList.length > 0) {
-            newData = data.map((brewery) => {
-              const isFav = faveList.find((fav) => fav.obd_id === brewery.id);
-              return {
-                ...brewery,
-                isFavorite: isFav ? true : false,
-                isUser: userId || null,
-              };
-            });
-          }
+          newData = data.map((brewery) => {
+            const isFav = faveList.find((fav) => fav.obd_id === brewery.id);
+            return {
+              ...brewery,
+              isFavorite: isFav ? true : false,
+              isUser: userId || null,
+            };
+          });
         }
         res.json({ newData });
       })

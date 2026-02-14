@@ -17,9 +17,9 @@ router.post("/", (req, res) => {
 });
 
 // POST /api/breweries/search/1
-router.post("/search/1", (req, res) => {
+router.post("/search/1", async (req, res) => {
   if (req.body.obd_id) {
-    let obdId = req.body.obd_id;
+    const obdId = req.body.obd_id;
     const url = `https://api.openbrewerydb.org/v1/breweries/${obdId}`;
 
     fetch(url)
@@ -30,7 +30,19 @@ router.post("/search/1", (req, res) => {
         return response.json();
       })
       .then((data) => {
-        res.json({ data, url: url, status: 200 });
+        const favData = Favorites.findOne({
+          where: {
+            obd_id: req.body.obd_id,
+            user_id: req.session.user ? req.session.user.user : null,
+          },
+        });
+
+        res.json({
+          data,
+          url: url,
+          status: 200,
+          isFavorite: favData ? true : false,
+        });
       })
       .catch((error) => {
         res.status(400).json({

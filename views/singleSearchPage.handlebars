@@ -20,7 +20,31 @@
             {{/if}}
           </div>
         </div>
+        <div>
+          {{#if isFavorite}}
+            <button
+              class="favorite-button is-favorited"
+              data-info="{{data.id}}"
+              id="favoriteButton"
+            >
+              <span class="no-favorite-heart">🖤</span><span
+                class="favorite-heart"
+              >🧡</span>
+            </button>
+          {{else}}
+            <button
+              class="favorite-button"
+              data-info="{{data.id}}"
+              id="favoriteButton"
+            >
+              <span class="no-favorite-heart">🖤</span><span
+                class="favorite-heart"
+              >🧡</span>
+            </button>
+          {{/if}}
+        </div>
       </li>
     </ul>
   </div>
 </div>
+<script src="/js/singleSearch.js"></script>

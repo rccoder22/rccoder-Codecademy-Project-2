@@ -147,7 +147,7 @@ router.post("/favorite", async (req, res) => {
       status: 400,
       message: "Could not save favorite brewery",
       error: error.message,
-      user_id: userId,
+      user_id: user.user,
       obd_id: breweryId,
     });
   }
@@ -189,7 +189,7 @@ router.delete("/favorite", async (req, res) => {
       status: 400,
       message: "Could not delete favorite brewery",
       error: error.message,
-      user_id: userId,
+      user_id: user.user,
       obd_id: breweryId,
     });
   }

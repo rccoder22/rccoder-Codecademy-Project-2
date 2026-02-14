@@ -22,16 +22,19 @@ router.get("/search/1", (req, res) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          res.status(400).json({
-            status: 400,
-            message: `Database response status ${response.status}`,
-          });
+          res.render("singleSearchPage", {});
           return null;
         }
         return response.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         if (data) {
+          const favData = await Favorites.findOne({
+            where: {
+              obd_id: data.id,
+              user_id: req.session.user ? req.session.user.user : null,
+            },
+          });
           data.name = data.name.replace(/[^a-zA-Z0-9 ]/g, "");
           if (data.postal_code) {
             data.postal_code = data.postal_code.slice(0, 5);
@@ -42,14 +45,15 @@ router.get("/search/1", (req, res) => {
             const phone3 = data.phone.slice(6);
             data.phone = `${phone1}-${phone2}-${phone3}`;
           }
-          res.render("singleSearchPage", { data, title: "Brews'n search" });
+          res.render("singleSearchPage", {
+            data,
+            title: "Brews'n search",
+            isFavorite: favData ? true : false,
+          });
         }
       })
       .catch((error) => {
-        res.status(400).json({
-          status: 400,
-          message: error.message,
-        });
+        res.render("singleSearchPage", {});
       });
   }
 });

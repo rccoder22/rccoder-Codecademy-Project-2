@@ -42,7 +42,7 @@ Favorites.init(
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
@@ -66,7 +66,7 @@ Favorites.init(
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     website_url: {
       type: DataTypes.STRING,
